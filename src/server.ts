@@ -1,5 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import { resolve } from 'path';
 
 export class Server {
     private app: Application = express();
@@ -12,6 +14,9 @@ export class Server {
     }
 
     private globalConfig() {
+        dotenv?.config({
+            path: resolve(__dirname + '/../environment/.env' )
+        });
         this.app.use(cors());
     }
 
